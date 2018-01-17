@@ -55,8 +55,23 @@ Management of **changes**, called **revisions** to any types of information
 
 https://github.com/compneuro-da/Pipeline_GSR_DCM
 
+# Register & set up git on your computer
+- Unlimited public repositories https://github.com/join
+- When you are academic, you could get private repo for free https://education.github.com/pack
+-  join also  lab account @compneuro-da
+
+# Installing git locally
+- command line git already installed on ubuntu (if not easy, it is in standard repositories)
+	`#sudo  apt-get install git`
+
+- many graphical interfaces guis, there is [github desktop](https://github.com/shiftkey/desktop)
+ unoficial fork for linux, also [free pro version for one year for academics](https://www.gitkraken.com/github-student-developer-pack)[gitkraken](https://www.gitkraken.com/)
+
 
 # Cloning repo
+
+first  fork the  repo to your account 
+
 - cloning =  getting something from the web
 
 
@@ -155,9 +170,6 @@ If you don’t own a repo and aren’t an official collaborator:
   5. Make friends + Big party! 
 
 
-# Register & set up git on your computer
-- Unlimited public repositories https://github.com/join
-- When you are academic, you could get private repo for free https://education.github.com/pack
 
 
 ## Installing git
