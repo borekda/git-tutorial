@@ -1,2 +1,2 @@
 # git-tutorial
-git crash-course for AoN Brainhack Warsaw 2017
+git crash-course for Lab meeting  2018
