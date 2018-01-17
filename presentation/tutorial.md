@@ -1,45 +1,24 @@
-# Git & Github collaboration tutorial
+name: inverse
+layout: true
+class: center, middle, inverse
+---
 
+
+#Git & Github collaboration tutorial
 lab meeting 18.01.2018 @ Ghent
 
 ---
-# Plan
+layout: false
+.left-column[
+## git & github 101
 
+## moar about collaboration ]
 
+.right-column[
+**Git**   is a program, allows groups of people to work on the same documents at the same time, and without stepping on each other's toes.”
 
 <img src="images/git.png" alt="https://xkcd.com/1597/" width="whatever" height="300">
 
-- what is version control
-- git & github 101
-- git workflow
-- collaboration possibilities
-- and moar
-
----
-# Version control
-
-Management of **changes**, called **revisions** to any types of information
-
-- Simple file versioning  
-  - add v1.0, v1.1, …  to filenames
-![](https://d2mxuefqeaa7sj.cloudfront.net/s_73A0E937615C98AD21B1CCD0B08D38E1017413FC2A8DCA0E44FD2BDC65497CF1_1516195377774_phd101212s.gif)
-![](https://lh6.googleusercontent.com/wnQri7PocE90x0z47oB3F6BmA02yT9W2tZ4lE52HL7KYUgNC9vfbspi0-oeuIpDLaNbti-L-qmqeKWlIVf0J7Bj_XCVPTUtUNNbNz4fxzNqmR5LLE1Wi94p5nelFh3bTcWORoIxpZnM)
-
-- Simple tools: Google Drive, Dropbox...
-- Advanced tools: subversion, mercurial  and git
-
-**Revision:** Change associated with a **timestamp** and the **person** making the change
-
-**Benefits:**
-
-- Go back to previous versions
-- Store history of changes
-- Collaborate with others
-
-
-# Git vs Github
-
-**Git**   is a program, allows groups of people to work on the same documents at the same time, and without stepping on each other's toes.”
 
 **GitHub** is an online service
 
@@ -47,6 +26,38 @@ Management of **changes**, called **revisions** to any types of information
 - helps you work with contributors/collaborators
 - web interface for version control
 - synchronise among several computers
+]
+
+---
+layout: false
+.left-column[
+## Version control]
+
+Management of **changes**, called **revisions** to any types of information
+
+- Simple file versioning (a v1.0, v1.1,to filenames)
+
+
+   <img src="images/version.gif" alt="https://xkcd.com/1597/" width="whatever" height="300"/> <img src="images/ver.png"  width="whatever" height="300"/>
+
+- Simple tools: Google Drive, Dropbox...
+- Advanced tools: subversion, mercurial  and git
+
+**Revision:** Change associated with a **timestamp** and the **person** making the change
+
+
+---
+
+layout: false
+.left-column[
+## Version control]
+
+**Benefits:**
+
+- Go back to previous versions
+- Store history of changes
+- Collaborate with others
+- When you are academic, you could get private repo for free https://education.github.com/pack
 
 **Interfaces to GitHub**
 
@@ -55,70 +66,76 @@ Management of **changes**, called **revisions** to any types of information
 - via the command line using ‘git’
 
 
-# Github interface
-![](https://d2mxuefqeaa7sj.cloudfront.net/s_73A0E937615C98AD21B1CCD0B08D38E1017413FC2A8DCA0E44FD2BDC65497CF1_1516196260449_image.png)
-
-
-https://github.com/compneuro-da/Pipeline_GSR_DCM
-
-# Register & set up git on your computer
-- Unlimited public repositories https://github.com/join
-- When you are academic, you could get private repo for free https://education.github.com/pack
--  join also  lab account @compneuro-da
-
-# Installing git locally
-- command line git already installed on ubuntu (if not easy, it is in standard repositories)
-	`#sudo  apt-get install git`
-
+**Installing git locally**
+- command line git already installed on ubuntu or try
+	`sudo  apt-get install git`
 - many graphical interfaces guis, there is [github desktop](https://github.com/shiftkey/desktop)
- unoficial fork for linux, also [free pro version for one year for academics](https://www.gitkraken.com/github-student-developer-pack)[gitkraken](https://www.gitkraken.com/)
+ unoficial fork for linux, also  you could use [gitkraken](https://www.gitkraken.com/) and get [free pro version for one year for academics](https://www.gitkraken.com/github-student-developer-pack)
+
+---
+layout: false
+.left-column[
+## Git workflow
+## Cloning repo]
+.right-column[
 
 
-# Cloning repo
+### Excercise 1. Fork to your account and then clone  this repo
 
-first  fork the  repo to your account
+    `git clone https://github.com/danieltomasz/git-tutorial.git`
 
-- cloning =  getting something from the web
+<img src="images/daniel.png" width="whatever" height="320">
 
+After that you need to change folder (in unix  `cd`  command). Now you have exact copy of repository on your local computer.
+Feel free to  `clone`  repos,  you cannot break it on GitHub since you do not have `push` rights.
+- ]
+---
+layout: false
+.left-column[
+## Git workflow
+## Creating repo locally]
 
-    git clone https://github.com/danieltomasz/git-tutorial.git
+.right-column[
+In case you have local project files on your computer you need to create repository locally. `cd` to root folder od your project and initialize repository:
 
-
-- after that you need to change folder (in unix  `cd`  command)
--  feel free to  `clone`  repos,  you cannot break it on GitHub since you do not have `push` rights.
-# Creating repo locally
-    git init
+    `git init`
 
   Executing this  will create a new `.git` subdirectory in your current working directory. This will also create a new master branch.
 
-    git add .  
-    git commit -m "first commit to the repo"
-
+    `git add .`
 
 your repo will now have  all files from folder added to the history and will track future updates to the file.
-You could exclude some files  and folders by putting them in special  `.gitignore` file  that is checked in at the root of your repository.
+You could exclude some files  and folders by putting them in special  `.gitignore` file  that is checked in at the root of your repository.]
 
+---
+layout: false
+.left-column[
+## Git workflow
+## Creating repo locally]
 
-# Connecting  to remote repo
-    git remote add origin URL  
+.right-column[
+Now time for creating remote repository (on github).
+<img src="images/create.png" width="whatever" height="300">
+Connect your local  to remote repo
 
-so in our case (i created) this repo
+    `git remote add origin https://github.com/user/repo.git`
 
-    git remote add origin https://github.com/user/repo.git
+in my case it was `git remote add origin https://github.com/danieltomasz/git-tutorial.git`. After that  check   `git remote -v`, in case you do mistake use `git remote rm origin`,
+]
 
-in case you do mistake
+---
+layout: false
+.left-column[
+## Git workflow
+##Pushing changes]
 
-    git remote rm origin
+.right-column[
+### Excercise 1. Create in your local  repository inside `dummy folder`  file name  after  you.
+Add  your changes by     `git add .` Now commit your changes
 
-in my case
+`git commit -m "first commit to the repo"``
 
-    git remote add origin https://github.com/danieltomasz/git-tutorial.git
-
-after that  check
-
-    git remote -v
-
-  push your  local changes
+Now push your  local changes
 
 # Github terms
 
