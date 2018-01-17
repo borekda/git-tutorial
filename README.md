@@ -1,2 +1,2 @@
 # git-tutorial
-git crash-course for Lab meeting  2018
+git crash-course for lab meeting 18 January   2018

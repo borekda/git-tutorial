@@ -26,8 +26,24 @@ layout: false
 - helps you work with contributors/collaborators
 - web interface for version control
 - synchronise among several computers
+- contribite to open source projects
 ]
 
+---
+layout: false
+.left-column[
+## 'git'?]
+
+The readme file of the source code:
+
+The name "git" was given by Linus Torvalds when he wrote the very first version. He described the tool as "the stupid content tracker" and the name as (depending on your way):
+
+ - random three-letter combination that is pronounceable, and not actually used by any common UNIX command. .
+ - (british slang)  **git** - a foolish of  worthless person
+ - "global information tracker": you're in a good mood
+ - "goddamn idiotic truckload of shit": when it breaks
+
+Git stores a  **snaphot** of what all the files in your project looks like every time you commit
 ---
 layout: false
 .left-column[
@@ -135,7 +151,21 @@ Add  your changes by     `git add .` Now commit your changes
 
 `git commit -m "first commit to the repo"``
 
-Now push your  local changes
+Now push your  local changes (we are now on master branch)
+
+`git push origin master`
+
+When working with more people the issue  become  more complicated. ]
+
+
+---
+layout: false
+.left-column[
+## Git workflow]
+.right-column[
+
+]
+`git push origin master`
 
 # Github terms
 
@@ -166,7 +196,7 @@ request to add your changes from a branch back into master ****
 **Merge**
 act of incorporating new changes (commits) from one branch to another
 **Fork**
-make a copy of someone else repository
+make a copy of someone else repository. A fork isn't a Git concept really, it's more a political/social idea.
 
 **Clone**
 copy a repository onto your local computer
@@ -229,7 +259,7 @@ check remote
 
 
 
-make a new brancj with clear commit history
+make a new branch  with clear commit history
 
     git branch fcbrainhack $(echo "commit message" | git commit-tree HEAD^{tree})
 
