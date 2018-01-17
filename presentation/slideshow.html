@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Git &amp; Github collaboration tutorial</title>
+		<style>
+			@import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url(//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+body { font-family: 'Droid Serif'; }
+h1, h2, h3 {
+	font-family: 'Yanone Kaffeesatz';
+	font-weight: normal;
+}
+.remark-code, .remark-inline-code {
+	font-family: 'Ubuntu Mono';
+}
+/*************/
+/* Container */
+/*************/
+
+html.remark-container, body.remark-container {
+  height: 100%;
+  width: 100%;
+  -webkit-print-color-adjust: exact;
+}
+.remark-container {
+  background: #d7d8d2;
+  margin: 0;
+  overflow: hidden;
+}
+.remark-container:focus {
+  outline-style: solid;
+  outline-width: 1px;
+}
+.remark-container:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+}
+
+body:-webkit-full-screen {
+    background: #000000;
+}
+
+body:-moz-full-screen {
+    background: #000000;
+}
+
+body:fullscreen{
+    background: #000000;
+}
+
+/**********/
+/* Slides */
+/**********/
+
+.remark-slides-area {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.remark-slide-container {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  page-break-after: always;
+}
+.remark-slide-scaler {
+  background-color: transparent;
+  overflow: auto;
+  position: absolute;
+  -webkit-transform-origin: top left;
+  -moz-transform-origin: top left;
+  transform-origin: top-left;
+  -moz-box-shadow: 0 0 30px #888;
+  -webkit-box-shadow: 0 0 30px #888;
+  box-shadow: 0 0 30px #888;
+}
+.remark-slide {
+  height: 100%;
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  position: relative;
+
+  > .left {
+    text-align: left;
+  }
+
+  > .center {
+    text-align: center;
+  }
+
+  > .right {
+    text-align: right;
+  }
+
+  > .top {
+    vertical-align: top;
+  }
+
+  > .middle {
+    vertical-align: middle;
+  }
+
+  > .bottom {
+    vertical-align: bottom;
+  }
+}
+
+.remark-slide-content {
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: table-cell;
+  font-size: 20px;
+  padding: 1em 4em 1em 4em;
+
+  h1 { font-size: 55px; }
+  h2 { font-size: 45px; }
+  h3 { font-size: 35px; }
+
+  .left {
+    display: block;
+    text-align: left;
+  }
+
+  .center {
+    display: block;
+    text-align: center;
+  }
+
+  .right {
+    display: block;
+    text-align: right;
+  }
+}
+
+.remark-slide-number {
+  bottom: 12px;
+  opacity: 0.5;
+  position: absolute;
+  right: 20px;
+}
+
+.remark-slide-notes {
+  border-top: 3px solid black;
+  position: absolute;
+  display: none;
+}
+
+.remark-code {
+  font-size: 18px;
+}
+.remark-code-line {
+  min-height: 1em;
+}
+.remark-code-line-highlighted {
+  background-color: rgba(255, 255, 0, 0.5);
+}
+.remark-code-span-highlighted {
+  background-color: rgba(255, 255, 0, 0.5);
+  padding: 1px 2px 2px 2px;
+}
+
+.remark-visible {
+  display: block;
+  z-index: 2;
+}
+.remark-fading {
+  display: block;
+  z-index: 1;
+  .remark-slide-scaler {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+/************/
+/* Backdrop */
+/************/
+
+.remark-backdrop {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  background: #000;
+  z-index: 2;
+}
+
+/*****************/
+/* Pause overlay */
+/*****************/
+
+.remark-pause {
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: none;
+  position: absolute;
+  z-index: 1000;
+
+  .remark-pause-lozenge {
+    margin-top: 30%;
+    text-align: center;
+
+    span {
+      color: white;
+      background: black;
+      border: 2px solid black;
+      border-radius: 20px;
+      padding: 20px 30px;
+      font-family: Helvetica, arial, freesans, clean, sans-serif;
+      font-size: 42pt;
+      font-weight: bold;
+    }
+  }
+}
+
+.remark-container.remark-presenter-mode.remark-pause-mode {
+  .remark-pause {
+    display: block;
+  }
+  .remark-backdrop {
+    display: block;
+    opacity: 0.5;
+  }
+}
+
+/********/
+/* Help */
+/********/
+
+.remark-help {
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  -webkit-transform-origin: top left;
+  -moz-transform-origin: top left;
+  transform-origin: top-left;
+
+  .remark-help-content {
+    color: white;
+    font-family: Helvetica, arial, freesans, clean, sans-serif;
+    font-size: 12pt;
+    position: absolute;
+    top: 5%;
+    bottom: 10%;
+    height: 10%;
+    left: 5%;
+    width: 90%;
+
+    h1 {
+      font-size: 36px;
+    }
+
+    td {
+      color: white;
+      font-size: 12pt;
+      padding: 10px;
+    }
+    td:first-child {
+      padding-left: 0;
+    }
+    .key {
+      background: white;
+      color: black;
+      min-width: 1em;
+      display: inline-block;
+      padding: 3px 6px;
+      text-align: center;
+      border-radius: 4px;
+      font-size: 14px,
+    }
+  }
+
+  .dismiss {
+    top: 85%;
+  }
+}
+
+.remark-container.remark-help-mode {
+  .remark-help {
+    display: block;
+  }
+  .remark-backdrop {
+    display: block;
+    opacity: 0.95;
+  }
+}
+
+/******************/
+/* Presenter mode */
+/******************/
+
+.remark-preview-area {
+  bottom: 2%;
+  left: 2%;
+  display: none;
+  opacity: 0.5;
+  position: absolute;
+  height: 47.25%;
+  width: 48%;
+
+  .remark-slide-container {
+    display: block;
+  }
+}
+
+.remark-notes-area {
+  background: #fff;
+  bottom: 0;
+  color: black;
+  display: none;
+  left: 52%;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  .remark-top-area {
+    height: 50px;
+    left: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  .remark-bottom-area {
+    position: absolute;
+    top: 75px;
+    bottom: 10px;
+    left: 20px;
+    right: 10px;
+
+    .remark-toggle {
+      display: block;
+      text-decoration: none;
+      font-family: Helvetica,arial,freesans,clean,sans-serif;
+      height: 21px;
+      font-size: 0.75em;
+      text-transform: uppercase;
+      color: #ccc;
+    }
+
+    .remark-notes-current-area {
+      height: 70%;
+      position: relative;
+
+      .remark-notes {
+        clear:both;
+        border-top: 1px solid #f5f5f5;
+        position: absolute;
+        top: 22px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        padding-top: 10px;
+      }
+    }
+
+    .remark-notes-preview-area {
+      height: 30%;
+      position: relative;
+
+      .remark-notes-preview {
+        border-top: 1px solid #f5f5f5;
+        position: absolute;
+        top: 22px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        overflow-y: auto;
+      }
+    }
+
+    .remark-notes > *:first-child,
+    .remark-notes-preview > *:first-child {
+      margin-top: 5px;
+    }
+    .remark-notes > *:last-child,
+    .remark-notes-preview > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.remark-toolbar {
+  color: #979892;
+  vertical-align: middle;
+
+  .remark-toolbar-link {
+    border: 2px solid #d7d8d2;
+    color: #979892;
+    display: inline-block;
+    padding: 2px 2px;
+    text-decoration: none;
+    text-align: center;
+    min-width: 20px;
+
+    &:hover {
+      border-color: #979892;
+      color: #676862;
+    }
+  }
+
+  .remark-toolbar-timer {
+    border: 2px solid black;
+    border-radius: 10px;
+    background: black;
+    color: white;
+    display: inline-block;
+    float: right;
+    padding: 5px 10px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 175%;
+    text-decoration: none;
+    text-align: center;
+  }
+}
+
+.remark-container.remark-presenter-mode {
+  .remark-slides-area {
+    top: 2%;
+    left: 2%;
+    height: 47.25%;
+    width: 48%;
+  }
+  .remark-preview-area {
+    display: block;
+  }
+  .remark-notes-area {
+    display: block;
+  }
+}
+
+/************/
+/* Blackout */
+/************/
+
+.remark-container.remark-blackout-mode:not(.remark-presenter-mode) {
+  .remark-backdrop {
+    display: block;
+    opacity: 0.99;
+  }
+}
+
+/************/
+/* Mirrored */
+/************/
+
+.remark-container.remark-mirrored-mode:not(.remark-presenter-mode) {
+  .remark-slides-area {
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+  }
+}
+
+/************/
+/* Printing */
+/************/
+
+@media print {
+  .remark-container {
+    overflow: visible;
+    background-color: #fff;
+  }
+  .remark-container.remark-presenter-mode {
+    .remark-slides-area {
+      top: 0px;
+      left: 0px;
+      height: 100%;
+      /*
+        NOTE: 100% doesn't match @page size width or height
+              681px matching @page size/width does, however
+      */
+      width: 681px;
+    }
+    .remark-preview-area,
+    .remark-notes-area {
+      display: none;
+    }
+    .remark-slide-notes {
+      display: block;
+      margin-left: 30px;
+      width: 621px;
+    }
+  }
+  .remark-slide-container {
+    display: block;
+    position: relative;
+  }
+  .remark-slide-scaler {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    -webkit-transform-origin: initial;
+    box-shadow: none;
+  }
+}
+@page {
+  margin: 0;
+}
+
+
+		</style>
+	</head>
+	<body>
+		<textarea id="source">
+# Git & Github collaboration tutorial
+
+lab meeting 18.01.2018 @ Ghent
+
+---
+# Plan
+
+
+
+<img src="images/git.png" alt="https://xkcd.com/1597/" width="whatever" height="300">
+
+- what is version control
+- git & github 101
+- git workflow
+- collaboration possibilities
+- and moar
+
+---
+# Version control
+
+Management of **changes**, called **revisions** to any types of information
+
+- Simple file versioning  
+  - add v1.0, v1.1, …  to filenames
+![](https://d2mxuefqeaa7sj.cloudfront.net/s_73A0E937615C98AD21B1CCD0B08D38E1017413FC2A8DCA0E44FD2BDC65497CF1_1516195377774_phd101212s.gif)
+![](https://lh6.googleusercontent.com/wnQri7PocE90x0z47oB3F6BmA02yT9W2tZ4lE52HL7KYUgNC9vfbspi0-oeuIpDLaNbti-L-qmqeKWlIVf0J7Bj_XCVPTUtUNNbNz4fxzNqmR5LLE1Wi94p5nelFh3bTcWORoIxpZnM)
+
+- Simple tools: Google Drive, Dropbox...
+- Advanced tools: subversion, mercurial  and git
+
+**Revision:** Change associated with a **timestamp** and the **person** making the change
+
+**Benefits:**
+
+- Go back to previous versions
+- Store history of changes
+- Collaborate with others
+
+
+# Git vs Github
+
+**Git**   is a program, allows groups of people to work on the same documents at the same time, and without stepping on each other's toes.”
+
+**GitHub** is an online service
+
+- hosts your repositories (projects)
+- helps you work with contributors/collaborators
+- web interface for version control
+- synchronise among several computers
+
+**Interfaces to GitHub**
+
+- **directly online**
+- **with the Github Desktop App**
+- via the command line using ‘git’
+
+
+# Github interface
+![](https://d2mxuefqeaa7sj.cloudfront.net/s_73A0E937615C98AD21B1CCD0B08D38E1017413FC2A8DCA0E44FD2BDC65497CF1_1516196260449_image.png)
+
+
+https://github.com/compneuro-da/Pipeline_GSR_DCM
+
+# Register & set up git on your computer
+- Unlimited public repositories https://github.com/join
+- When you are academic, you could get private repo for free https://education.github.com/pack
+-  join also  lab account @compneuro-da
+
+# Installing git locally
+- command line git already installed on ubuntu (if not easy, it is in standard repositories)
+	`#sudo  apt-get install git`
+
+- many graphical interfaces guis, there is [github desktop](https://github.com/shiftkey/desktop)
+ unoficial fork for linux, also [free pro version for one year for academics](https://www.gitkraken.com/github-student-developer-pack)[gitkraken](https://www.gitkraken.com/)
+
+
+# Cloning repo
+
+first  fork the  repo to your account
+
+- cloning =  getting something from the web
+
+
+    git clone https://github.com/danieltomasz/git-tutorial.git
+
+
+- after that you need to change folder (in unix  `cd`  command)
+-  feel free to  `clone`  repos,  you cannot break it on GitHub since you do not have `push` rights.
+# Creating repo locally
+    git init
+
+  Executing this  will create a new `.git` subdirectory in your current working directory. This will also create a new master branch.
+
+    git add .  
+    git commit -m "first commit to the repo"
+
+
+your repo will now have  all files from folder added to the history and will track future updates to the file.
+You could exclude some files  and folders by putting them in special  `.gitignore` file  that is checked in at the root of your repository.
+
+
+# Connecting  to remote repo
+    git remote add origin URL  
+
+so in our case (i created) this repo
+
+    git remote add origin https://github.com/user/repo.git
+
+in case you do mistake
+
+    git remote rm origin
+
+in my case
+
+    git remote add origin https://github.com/danieltomasz/git-tutorial.git
+
+after that  check
+
+    git remote -v
+
+  push your  local changes
+
+# Github terms
+
+**Repository (Repo)**
+is a virtual storage of your project. It allows you to save versions of your code, which you can access when needed.
+
+**Commit**
+saving a version of file(s)
+**> git add README.md**
+**> git commit -m ‘My first commit’**
+
+**Issues**
+to-do list of tasks, bugs and things you wish to accomplish
+
+
+![](https://d2mxuefqeaa7sj.cloudfront.net/s_73A0E937615C98AD21B1CCD0B08D38E1017413FC2A8DCA0E44FD2BDC65497CF1_1516196591158_image.png)
+
+
+**Branch**
+When working with a centralized workflow the concepts are simple, `master` represented the official history. With each now scope of work, aka feature, the developer is to create a new branch.
+
+![Screen Shot 2016-02-05 at 2.08.15 PM.png](https://lh5.googleusercontent.com/qYV7uWW76pmMH2wjEhlF030V0X0jvuQNHRkIL_z_F_uJj6sayl_jQ5M5jVjun_DNmaeZ1EuE_P4GeGaIzfehD5bflHaosKnZZplVKXh5raYud1qqTxURs4v3_4YISFXg75F5jiVDSyk)
+
+
+
+**Pull request**
+request to add your changes from a branch back into master ****
+**Merge**
+act of incorporating new changes (commits) from one branch to another
+**Fork**
+make a copy of someone else repository
+
+**Clone**
+copy a repository onto your local computer
+**Download Zip**
+download the content of a repository
+
+
+# Collaborating with GitHub
+# Add collaborators
+
+As the **owner** of a repo you:
+
+    1. **add** people as **collaborators**
+    2. each collaborator can read/write files in the repo
+    3. each collaborator is adding files and other content → making branches → and either directly merging changes in or via pull requests
+# Fork + Pull Request
+
+If you don’t own a repo and aren’t an official collaborator:
+
+  1. you will **fork a repo**
+  2. work on your forked copy of the repo
+  3. in order to get your changes pulled into the original repo → **make a pull request** for the changes you’ve made
+  4. the author/owner of the original repo will determine if your changes are cool → and merge them in.
+  5. Make friends + Big party!
+
+
+
+
+## Installing git
+
+[https://gist.github.com/derhuerst/1b15ff4652a867391f03](https://gist.github.com/derhuerst/1b15ff4652a867391f03)
+
+
+    git push origin remote  
+
+
+    Keeping a fork up to date
+
+    Raw
+    ### 1. Clone your fork:
+
+        git clone git@github.com:YOUR-USERNAME/YOUR-FORKED-REPO.git
+
+    ### 2. Add remote from original repository in your forked repository:
+
+        cd into/cloned/fork-repo
+        git remote add upstream git://github.com/ORIGINAL-DEV-USERNAME/REPO-YOU-FORKED-FROM.git
+        git fetch upstream
+
+    ### 3. Updating your fork from original repo to keep up with their changes:
+
+        git pull upstream master
+
+check remote
+
+
+    git remote show origin
+    git remote -v
+    git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
+
+
+
+make a new brancj with clear commit history
+
+    git branch fcbrainhack $(echo "commit message" | git commit-tree HEAD^{tree})
+
+
+
+
+# More advanced stuff
+
+**rebase first, then merge**.
+
+- https://dev.to/maxwell_dev/the-git-rebase-introduction-i-wish-id-had
+- git branches [https://railsware.com/blog/2014/08/11/git-housekeeping-tutorial-clean-up-outdated-branches-in-local-and-remote-repositories/](https://railsware.com/blog/2014/08/11/git-housekeeping-tutorial-clean-up-outdated-branches-in-local-and-remote-repositories/)
+- https://github.com/mockito/mockito/wiki/Using-git-to-prepare-your-PR-to-have-a-clean-history
+
+#cheatsheet
+
+https://gist.github.com/hofmannsven/6814451
+
+
+[https://gist.github.com/hofmannsven/6814451](https://gist.github.com/hofmannsven/6814451)
+https://sethrobertson.github.io/GitFixUm/fixup.html
+
+		</textarea>
+		<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+		<script>
+			var slideshow = remark.create();
+		</script>
+		<script></script>
+	</body>
+</html>

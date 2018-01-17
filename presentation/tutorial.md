@@ -1,21 +1,27 @@
-# Git & Github collaboration tutorial 
+# Git & Github collaboration tutorial
+
+lab meeting 18.01.2018 @ Ghent
+
+---
+# Plan
 
 
-# lab meeting 18.01.2018 @ Ghent
+
+<img src="images/git.png" alt="https://xkcd.com/1597/" width="whatever" height="300">
+
 - what is version control
 - git & github 101
 - git workflow
 - collaboration possibilities
 - and moar
-https://xkcd.com/1597/
 
-                [https://xkcd.com/1597/](https://xkcd.com/1597/)
+---
 # Version control
 
 Management of **changes**, called **revisions** to any types of information
 
 - Simple file versioning  
-  - add v1.0, v1.1, …  to filenames 
+  - add v1.0, v1.1, …  to filenames
 ![](https://d2mxuefqeaa7sj.cloudfront.net/s_73A0E937615C98AD21B1CCD0B08D38E1017413FC2A8DCA0E44FD2BDC65497CF1_1516195377774_phd101212s.gif)
 ![](https://lh6.googleusercontent.com/wnQri7PocE90x0z47oB3F6BmA02yT9W2tZ4lE52HL7KYUgNC9vfbspi0-oeuIpDLaNbti-L-qmqeKWlIVf0J7Bj_XCVPTUtUNNbNz4fxzNqmR5LLE1Wi94p5nelFh3bTcWORoIxpZnM)
 
@@ -45,7 +51,7 @@ Management of **changes**, called **revisions** to any types of information
 **Interfaces to GitHub**
 
 - **directly online**
-- **with the Github Desktop App** 
+- **with the Github Desktop App**
 - via the command line using ‘git’
 
 
@@ -70,7 +76,7 @@ https://github.com/compneuro-da/Pipeline_GSR_DCM
 
 # Cloning repo
 
-first  fork the  repo to your account 
+first  fork the  repo to your account
 
 - cloning =  getting something from the web
 
@@ -78,25 +84,25 @@ first  fork the  repo to your account
     git clone https://github.com/danieltomasz/git-tutorial.git
 
 
-- after that you need to change folder (in unix  `cd`  command) 
+- after that you need to change folder (in unix  `cd`  command)
 -  feel free to  `clone`  repos,  you cannot break it on GitHub since you do not have `push` rights.
 # Creating repo locally
     git init
 
-  Executing this  will create a new `.git` subdirectory in your current working directory. This will also create a new master branch. 
+  Executing this  will create a new `.git` subdirectory in your current working directory. This will also create a new master branch.
 
     git add .  
     git commit -m "first commit to the repo"
 
-  
+
 your repo will now have  all files from folder added to the history and will track future updates to the file.
-You could exclude some files  and folders by putting them in special  `.gitignore` file  that is checked in at the root of your repository. 
+You could exclude some files  and folders by putting them in special  `.gitignore` file  that is checked in at the root of your repository.
 
 
 # Connecting  to remote repo
     git remote add origin URL  
 
-so in our case (i created) this repo 
+so in our case (i created) this repo
 
     git remote add origin https://github.com/user/repo.git
 
@@ -104,7 +110,7 @@ in case you do mistake
 
     git remote rm origin
 
-in my case 
+in my case
 
     git remote add origin https://github.com/danieltomasz/git-tutorial.git
 
@@ -117,15 +123,15 @@ after that  check
 # Github terms
 
 **Repository (Repo)**
-is a virtual storage of your project. It allows you to save versions of your code, which you can access when needed. 
+is a virtual storage of your project. It allows you to save versions of your code, which you can access when needed.
 
 **Commit**
 saving a version of file(s)
 **> git add README.md**
-**> git commit -m ‘My first commit’** 
+**> git commit -m ‘My first commit’**
 
 **Issues**
-to-do list of tasks, bugs and things you wish to accomplish 
+to-do list of tasks, bugs and things you wish to accomplish
 
 
 ![](https://d2mxuefqeaa7sj.cloudfront.net/s_73A0E937615C98AD21B1CCD0B08D38E1017413FC2A8DCA0E44FD2BDC65497CF1_1516196591158_image.png)
@@ -138,7 +144,7 @@ When working with a centralized workflow the concepts are simple, `master` repre
 
 
 
-**Pull request** 
+**Pull request**
 request to add your changes from a branch back into master ****
 **Merge**
 act of incorporating new changes (commits) from one branch to another
@@ -151,23 +157,23 @@ copy a repository onto your local computer
 download the content of a repository
 
 
-# Collaborating with GitHub 
+# Collaborating with GitHub
 # Add collaborators
 
 As the **owner** of a repo you:
 
-    1. **add** people as **collaborators** 
-    2. each collaborator can read/write files in the repo 
+    1. **add** people as **collaborators**
+    2. each collaborator can read/write files in the repo
     3. each collaborator is adding files and other content → making branches → and either directly merging changes in or via pull requests
 # Fork + Pull Request
 
 If you don’t own a repo and aren’t an official collaborator:
 
-  1. you will **fork a repo** 
-  2. work on your forked copy of the repo 
+  1. you will **fork a repo**
+  2. work on your forked copy of the repo
   3. in order to get your changes pulled into the original repo → **make a pull request** for the changes you’ve made
   4. the author/owner of the original repo will determine if your changes are cool → and merge them in.
-  5. Make friends + Big party! 
+  5. Make friends + Big party!
 
 
 
@@ -181,32 +187,32 @@ If you don’t own a repo and aren’t an official collaborator:
 
 
     Keeping a fork up to date
-    
+
     Raw
     ### 1. Clone your fork:
-    
+
         git clone git@github.com:YOUR-USERNAME/YOUR-FORKED-REPO.git
-    
-    ### 2. Add remote from original repository in your forked repository: 
-    
+
+    ### 2. Add remote from original repository in your forked repository:
+
         cd into/cloned/fork-repo
         git remote add upstream git://github.com/ORIGINAL-DEV-USERNAME/REPO-YOU-FORKED-FROM.git
         git fetch upstream
-    
+
     ### 3. Updating your fork from original repo to keep up with their changes:
-    
+
         git pull upstream master
 
-check remote 
+check remote
 
 
     git remote show origin
     git remote -v
     git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
-    
-    
 
-make a new brancj with clear commit history 
+
+
+make a new brancj with clear commit history
 
     git branch fcbrainhack $(echo "commit message" | git commit-tree HEAD^{tree})
 
@@ -228,4 +234,3 @@ https://gist.github.com/hofmannsven/6814451
 
 [https://gist.github.com/hofmannsven/6814451](https://gist.github.com/hofmannsven/6814451)
 https://sethrobertson.github.io/GitFixUm/fixup.html
-
